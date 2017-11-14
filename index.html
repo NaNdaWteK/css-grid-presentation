@@ -1,0 +1,232 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Review La llista</title>
+
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/night.css">
+<link rel='stylesheet' href='css/custom.css'>
+
+<!-- Theme used for syntax highlighting of code -->
+<link rel="stylesheet" href="lib/css/zenburn.css">
+
+<!-- Printing and PDF exports -->
+<script>
+	var link = document.createElement( 'link' );
+	link.rel = 'stylesheet';
+	link.type = 'text/css';
+	link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+	document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+
+<div class="reveal">
+	<div class="slides">
+		<section>
+			<section>
+				<img class='plain' style='width: 200px; height: 200px; background: transparent' data-src='./img/devscola.png' />
+				<h2>CSS Grid Layout</h2>
+			</section>
+
+			<section>
+				<h3>Algunas consideraciones</h3>
+				<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/how.jpg' />
+				<ul>
+					<li>Sistema de rejilla de dos dimensiones: Controlamos los dos ejes</li>
+					<li>Manejo de items en cualquiera de las celdas del grid, aunque tambien hay auto-placement.</li>
+					<li>Podemos hacer lo mismo de muchas formas, pero todas tendrán distinto comportamiento.</li>
+					<li>Es extenso y complejo, pudiendo profundizar muchísimo en el.</li>
+					<li>Combina a la perfección con flexbox</li>
+				</ul>
+			</section>
+
+			<section>
+				<section>
+					<h1>Vamos allá!!!</h1>
+					<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/cat-keyboard.gif' />
+				</section>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Grid Básico</h2>
+				<img class='plain' style='max-width: 500px;height: auto;' data-src='./img/grid.jpg' />
+				<div style="width:100%; text-align: center">
+					<ul style="width:auto; margin: 0 auto">
+						<li>Grid tracks( rows & columns )</li>
+						<li>Grid lines</li>
+						<li>Grid cells</li>
+						<li>Grid area( rectangular )</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h2>Al declarar <span style="color: red">display</span></h2>
+				<ul>
+					<li>display: grid</li>
+					<li>display: inline-grid</li>
+				</ul>
+				<p>Los hijos de ese container, pasan a ser grid-items</p>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Al definir <span style="color: red">tracks</span></h2>
+				<div>
+					<div style="width:48%; display: inline-block">
+						<a href="./examples/ejemplo-1.html"><img class='plain' style='max-width: 450px;height: auto;' data-src='./img/ejemplo-1-code.jpg' /></a>
+					</div>
+					<div style="width:48%; display: inline-block">
+						<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/ejemplo-1.jpg' />
+					</div>
+				</div>
+				<p style="text-align:left"><span style="color: red">fr</span> La nueva medida fr es sólo aplicable en nuestro css-grid</p>
+				<p style="text-align:left"><span style="color: red">grid-auto-rows: 1fr;</span> Contenido dinamico</p>
+			</section>
+			<section>
+				<h3>Algunas Utilidades I</h3>
+				<div style="width:48%; display: inline-block">
+					<a href="./examples/ejemplo-2.html"><img class='plain' style='max-width: 450px;height: auto;' data-src='./img/ejemplo-2-code.jpg' /></a>
+				</div>
+				<div style="width:48%; display: inline-block">
+					<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/ejemplo-2.jpg' />
+				</div>
+				<p style="text-align:left"><span style="color: red">repeat()</span> Podemos repetir medidas sin necesidad de ponerlas todas</p>
+				<p style="text-align:left"><span style="color: red">minmax()</span> Define un mínimo y un máximo al track</p>
+			</section>
+			<section>
+				<h3>Algunas Utilidades II</h3>
+				<div style="width:48%; display: inline-block">
+					<a href="./examples/ejemplo-3.html"><img class='plain' style='max-width: 450px;height: auto;' data-src='./img/ejemplo-3-code.jpg' /></a>
+				</div>
+				<div style="width:48%; display: inline-block">
+					<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/ejemplo-3.jpg' />
+				</div>
+				<p style="text-align:left"><span style="color: red">auto-fill / auto-fit</span> Calculan automaticamente el número de repeticiones<span style="color: red">*</span></p>
+				<p style="text-align:left">Combinadas con minmax() hacen el contenido flexible</p>
+				<p style="font-size:14px; color: red">* No es posible combinar dos auto-fill/fit en el mismo track</p>
+				<p style="font-size:14px; color: red">* Ambos deben ser usados en minmax con min fijo y max flexible, si son las dos fijas coge max</p>
+				<p style="font-size:14px; color: red">* Con auto-fill/fit no puedo tener fr ni autos fuera del minmax</p>
+				<p style="font-size:14px; color: red">* Cuando no tengo suficientes tracks por columna, auto-fit collapsa a 0 los tracks vacios usando todo el espacio, auto-fill los genera pero vacios dejando huecos libres</p>
+			</section>
+		</section>
+
+		<section>
+			<section>
+				<h2>Jugando con los <span style="color: red">items</span></h2>
+				<p>Puedo colocar los items allá donde quiera dentro del grid</p>
+
+				<div>
+					<div style="width:48%; display: inline-block">
+						<a href="./examples/ejemplo-4.html"><img class='plain' style='max-width: 450px;height: auto;' data-src='./img/ejemplo-4-code.jpg' /></a>
+					</div>
+					<div style="width:48%; display: inline-block">
+						<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/ejemplo-4.jpg' />
+					</div>
+				</div>
+				<p style="text-align:left; font-size:20px;"><span style="color: red">*grid-column[-start][-end]</span> Número de línea para colocar el item</p>
+				<p style="text-align:left; font-size:20px;"><span style="color: red">*grid-column (shorthand)</span> <span style="color: orange">start/end</span> lineas en las que posiciono el item</p>
+				<p style="font-size:14px; color: red">*Cuidado con su uso, pues es contrario a la accesibilidad</p>
+				<p style="font-size:14px; color: red">*Lo mismo con las rows</p>
+			</section>
+			<section>
+				<h3>Expandir items & superposicion</h3>
+				<div style="width:48%; display: inline-block">
+					<a href="./examples/ejemplo-5.html"><img class='plain' style='max-width: 450px;height: auto;' data-src='./img/ejemplo-5-code.jpg' /></a>
+				</div>
+				<div style="width:48%; display: inline-block">
+					<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/ejemplo-5.jpg' />
+				</div>
+				<p style="text-align:left"><span style="color: red">span</span> También podemos expandir items</p>
+				<p style="text-align:left"><span style="color: red">grid-column</span> Permite superponer items</p>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Líneas, líneas!!!</h3>
+				<div style="width:48%; display: inline-block">
+					<a href="./examples/ejemplo-6.html"><img class='plain' style='max-width: 500px;height: auto;' data-src='./img/ejemplo-6-code.jpg' /></a>
+				</div>
+				<div style="width:48%; display: inline-block">
+					<img class='plain' style='max-width: 380px;height: auto;' data-src='./img/ejemplo-6.jpg' />
+				</div>
+				<p style="font-size:16px"><span style="color: red">[nombre-linea]</span> Para layouts complejos podemos ayudarnos nombrando las líneas.</p>
+				<p style="font-size:16px">En responsive al nombrar las líneas, en muchos casos nos ahorraremos volver a definir posiciones</p>
+				<p style="font-size:16px">Las líneas pueden tener más de un nombre <span style="color: red">[header-start sidebar-start]</span></p>
+			</section>
+			<section>
+				<h3>Y mas líneas!!!</h3>
+				<div style="width:48%; display: inline-block">
+					<a href="./examples/ejemplo-7.html"><img class='plain' style='max-width: 450px;height: auto;' data-src='./img/ejemplo-7-code.jpg' /></a>
+				</div>
+				<div style="width:48%; display: inline-block">
+					<img class='plain' style='max-width: 450px;height: auto;' data-src='./img/ejemplo-7.jpg' />
+				</div>
+				<p>Las lineas pueden nombrarse igual.</p>
+				<p>Este caso puede ser útil adaptar el tamaño de los gaps usándolos como columnas, haciendo layouts irregulares.</p>
+				<p>Tambien podemos apoyarnos en repeat <span style="color: red">=></span> grid-template-columns: repeat(4, [col] 1fr);</p>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3>Un poco sobre áreas</h3>
+				<div style="width:48%; display: inline-block">
+					<a href="./examples/ejemplo-8.html"><img class='plain' style='max-width: 500px;height: auto;' data-src='./img/ejemplo-8-code.jpg' /></a>
+				</div>
+				<div style="width:48%; display: inline-block">
+					<img class='plain' style='max-width: 380px;height: auto;' data-src='./img/ejemplo-8.jpg' />
+				</div>
+				<p style="font-size:20px"><span style="color: red">grid-template-areas</span> Permite definir que espacios cubren las distintas áreas.</p>
+				<p style="font-size:20px"><span style="color: red">"."</span> Indica un área vacía.</p>
+				<p style="font-size:20px"><span style="color: red">grid-area</span> Da nombre a un área.</p>
+				<p style="text-align:left; font-size:15px">* Las áreas definidas, crean autómaticamente sus correspondientes líneas [header-start header-end]</p>
+				<p style="text-align:left; font-size:15px">* Las líneas [header-start header-end] definidas en rows y columnas, también crean la correspondiente área header</p>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h3><a href="./examples/ejemplo-9.html">Alineación de items</a></h3>
+				<p><span style="color: red">align-self / align-items</span> Columnas o block axis.</p>
+				<p><span style="color: red">justify-self / justify-items</span> Filas o inline axis</p>
+				<h3><a href="./examples/ejemplo-10.html">Alineación de tracks</a></h3>
+				<p><span style="color: red">align-content</span> Columnas o block axis.</p>
+				<p><span style="color: red">justify-content</span> Filas o inline axis</p>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h1>GRACIAS!!</h1>
+				<img data-src='./img/feedback.jpg' />
+				<h5>Thousand machines can never make a flower</h5>
+			</section>
+
+			<section>
+				<img class='plain' style='width: 200px; height: 200px' data-src='./img/nandawtek.jpg' />
+				<h5>Github! <a href='https://github.com/nandawtek'>@nandawtek</a></h5>
+			</section>
+		</section>
+	</div>
+	<div class='footer'>
+		<img class='plain' style='width: 40px; height: 40px' src='./img/nandawtek.jpg' />
+		<span>@nandawtek</span>
+	</div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+	// More info https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		history: true,
+
+		// More info https://github.com/hakimel/reveal.js#dependencies
+		dependencies: [
+			{ src: 'plugin/markdown/marked.js' },
+			{ src: 'plugin/markdown/markdown.js' },
+			// { src: 'plugin/notes/notes.js', async: true },
+			{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+		]
+	});
+</script>
